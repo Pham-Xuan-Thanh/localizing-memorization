@@ -1,5 +1,5 @@
 import torch.nn as nn
-from dropout import ExampleTiedDropout
+from dropout import ExampleTiedDropout 
 
 class Mul(nn.Module):
     def __init__(self, weight):
@@ -63,8 +63,8 @@ class ResNet9_dropout(nn.Module):
         self.mul  = Mul(0.2)
 
     def get_dropout(self, p_fixed, p_mem, num_batches, drop_mode):
-        # return ExampleTiedDropout(p_fixed=p_fixed, p_mem=p_mem,num_batches=num_batches, drop_mode = drop_mode)
-        return nn.Dropout(p=p_fixed)
+        return dropout.ExampleTiedDropout(p_fixed=p_fixed, p_mem=p_mem,num_batches=num_batches, drop_mode = drop_mode)
+        # return nn.Dropout(p=p_fixed)
 
     def forward(self, x, **kwargs):
         x = self.conv1(x)

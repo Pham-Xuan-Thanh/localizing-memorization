@@ -6,7 +6,7 @@ import random, copy
 import os
 from utils import *
 
-data_root = "/home/pratyus2/scratch/projects/layer_learning/data"
+data_root = "/teamspace/studios/this_studio/localizing-memorization/data"
 
 def seed_everything(seed: int):
     # print("setting seed", seed)
@@ -139,7 +139,7 @@ def return_basic_dset(dataset, split, log_factor=2, seed_superclass = 1, aug = T
         dset = dataset_with_indices(call_dataset[dataset])(f'{data_root}', download=False, split = 'train' if train else 'test', transform = tvs)
         dset.targets = dset.labels
     else:
-        dset = dataset_with_indices(call_dataset[dataset])(f'{data_root}', download=False, train=train, transform=tvs)
+        dset = dataset_with_indices(call_dataset[dataset])(f'{data_root}', download=True, train=train, transform=tvs)
 
     try:
         n_classes = torch.tensor(dset.targets).max().item() + 1
